@@ -1,0 +1,21 @@
+{% extends "layout/base.html" %}
+
+{% block title %} Details {% endblock %}
+
+{% block content %}
+<div class="container ">
+    <div class="card col-3 my-4 mx-4">
+        <h5 class="card-title text-danger my-3 mx-2">{{ product.name }}</h5>
+        <img src="{{ url_for('static', filename='products/images/' + (product.image if product.image else 'default_image.jpg')) }}" alt="Image" class="card-img-top" style="height: 200px;">
+        <div class="card-body ">
+            <p><strong>Description:</strong> {{ product.description }}</p>
+            <p><strong>Section:</strong> {{ product.section }}</p>
+            <form method="POST" action="{{ url_for('products.delete_product', product_id=product.id) }}">
+                <input type="submit" class="btn btn-danger" value="Delete">
+            </form>
+        </div>
+    </div>
+        <a class="btn btn-info mx-4" href="/products"> cancel </a>
+
+</div>
+{% endblock %}

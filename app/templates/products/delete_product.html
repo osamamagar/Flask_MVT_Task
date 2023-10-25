@@ -1,19 +1,21 @@
 {% extends "layout/base.html" %}
 
 {% block title %}
-    Delete Product
+    Confirm Deletion
 {% endblock %}
 
 {% block content %}
     <div class="container">
-        <h1 class="text-danger my-4">Delete Product</h1>
-        <div class="card col-4">
+        <h1 class="text-danger my-4">Confirm Deletion</h1>
+        <div class="card col-3">
             <div class="card-body">
-                <h5 class="card-title">Are you sure you want to delete the product "{{ product.name }}"?</h5>
-                <form method="POST" action="{{ url_for('product.delete_product', product_id=product.id) }}">
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                <img src="{{ url_for('static', filename='products/images/' + (product.image if product.image else 'default_image.jpg')) }}" alt="Image" class="card-img-top" style="height: 200px;">
+                <h5 class="card-title text-success">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description }}</p>
+                <form method="POST">
+                    <button type="submit" class="btn btn-danger my-3">Delete Product</button>
+                    <a class="btn btn-primary" href="/products">cancel</a>
                 </form>
-                <a href="{{ url_for('product.product_home') }}" class="btn btn-primary">Cancel</a>
             </div>
         </div>
     </div>
