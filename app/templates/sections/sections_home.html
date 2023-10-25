@@ -24,8 +24,9 @@
         margin: 10px 0;
     }
 </style>
-<h1>Sections</h1>
-<div class="card-container">
+<div class="container ">
+    <h1 class="text-success">Sections</h1>
+<div class="card-container my-4">
     {% for section in sections %}
         <div class="card">
             <h2>{{ section.name }}</h2>
@@ -41,6 +42,8 @@
         </div>
     {% endfor %}
 </div>
-<a class="btn btn-primary" href="{{ url_for('sections.create_section') }}">Create Section</a>
+<a class="btn btn-primary mx-3" href="{{ url_for('sections.create_section') }}">Create Section</a>
 
+
+</div>
 {% endblock %}

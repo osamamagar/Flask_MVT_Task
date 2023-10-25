@@ -9,13 +9,11 @@
         <img src="{{ url_for('static', filename='products/images/' + (product.image if product.image else 'default_image.jpg')) }}" alt="Image" class="card-img-top" style="height: 200px;">
         <div class="card-body ">
             <p><strong>Description:</strong> {{ product.description }}</p>
-            <p><strong>Section:</strong> {{ product.section }}</p>
-            <form method="POST" action="{{ url_for('products.delete_product', product_id=product.id) }}">
-                <input type="submit" class="btn btn-danger" value="Delete">
-            </form>
+            <p><strong>Section:</strong> <span class="text-success"><a href="/sections" >{{ product.section.name }}</a></span></p>
+
         </div>
     </div>
-        <a class="btn btn-info mx-4" href="/products"> cancel </a>
+        <a class="btn btn-info mx-4" href="/products"> Return Home </a>
 
 </div>
 {% endblock %}
