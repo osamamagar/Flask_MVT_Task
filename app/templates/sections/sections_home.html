@@ -29,14 +29,13 @@
 <div class="card-container my-4">
     {% for section in sections %}
         <div class="card">
-            <h2>{{ section.name }}</h2>
-            <p>{{ section.created_at }}</p>
-            <p>{{ section.updated_at }}</p>
+            <h2 class="text-danger">{{ section.name }}</h2>
+            <p >Created At :{{ section.created_at }}</p>
             <hr>
             <h6>Products in this section:</h6>
             <ul>
                 {% for product in section.products %}
-                    <li>{{ product.name }}</li>
+                    <li><span><a href="{{ url_for('products.product_details', product_id=product.id) }}">{{ product.name }}</a></span></li>
                 {% endfor %}
             </ul>
         </div>

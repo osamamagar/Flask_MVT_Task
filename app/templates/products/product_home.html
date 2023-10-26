@@ -9,17 +9,20 @@
         <div class="row">
             {% for product in products %}
                 <div class="col-md-3">
-                    <div class="card mb-3">
+                    <div class="card mb-3 h-100">
                         <img src="{{ url_for('static', filename='products/images/' + (product.image if product.image else 'default_image.jpg')) }}" alt="Image" class="card-img-top" style="height: 200px;">
                         <div class="card-body">
                             <h3 class="card-title text-danger">{{ product.name }}</h3>
                             <p class="card-text">{{ product.description }}</p>
                             <p class="card-text">Section: <span class="text-success"><a href="/sections" >{{ product.section.name }}</a></span></p>
                         </div>
+                        <div class="my-2">
+                            <a href="{{ url_for('products.product_details', product_id=product.id) }}" class="btn btn-primary mx-4">Details</a>
+                            <a href="{{ url_for('products.edit_product', product_id=product.id) }}" class="btn btn-warning ">Edit</a>
+                            <a href="{{ url_for('products.delete_product', product_id=product.id) }}" class="btn btn-danger mx-3">Delete</a>
+
+                        </div>
                     </div>
-                    <a href="{{ url_for('products.product_details', product_id=product.id) }}" class="btn btn-primary mx-4">Details</a>
-                    <a href="{{ url_for('products.edit_product', product_id=product.id) }}" class="btn btn-warning ">Edit</a>
-                    <a href="{{ url_for('products.delete_product', product_id=product.id) }}" class="btn btn-danger mx-3">Delete</a>
 
                 </div>
             {% if loop.index % 4 == 0 %}
