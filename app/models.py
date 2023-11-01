@@ -36,6 +36,7 @@
 
 
 from datetime import datetime
+from flask import url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey, Integer, Column
 
@@ -58,6 +59,30 @@ class Product(db.Model):
     @classmethod
     def get_all_objects(cls):
         return cls.query.all()
+    
+    def save_product(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    @classmethod
+    def created_product(cls, request_form):
+        product = cls(**request_form)
+        db.session.add(product)
+        db.session.commit()
+        return product
+    
+    @classmethod
+    def get_specific_product(cls, id):
+         return cls.query.get_or_404(id)
+  
+    @property
+    def get_show_url(self):
+        return url_for('products.show', id=self.id)
+    
+    @property
+    def get_delete_url(self):
+        return url_for('products.delete', id=self.id)
+
 
 
 class Section(db.Model):
