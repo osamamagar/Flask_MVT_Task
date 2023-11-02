@@ -22,7 +22,6 @@ def create_product():
         # Access the image file from request.files
         if 'image' in request.files:
             image = request.files['image']
-            # Process the image as needed, e.g., save it to a folder or database.
 
             product = Product(name=name, image=image.filename, description=description, section_id=section_id)
             db.session.add(product)
