@@ -1,4 +1,4 @@
-from flask_restful import Resource,fields,marshal_with
+from flask_restful import Resource,fields,marshal_with,abort
 from flask import make_response
 from app.models import Product,Section,db
 from app.products.parser import product_parser
@@ -62,12 +62,13 @@ class ProductEdit(Resource):
 class ProductDelete(Resource):
     def delete(self, product_id):
         product = Product.get_specific_product(product_id)
-
-        db.session.delete(product)
-        db.session.commit()
-
-        return {'message': 'Product was deleted successfully'}, 204
-
+        if product:
+            db.session.delete(product)
+            db.session.commit()
+            response = make_response("Product was deleted successfully", 204)
+            return response
+        
+        abort(404)
 class CustomProduct(Resource):
     def get(self, product_id):
         product = Product.get_specific_product(product_id)
